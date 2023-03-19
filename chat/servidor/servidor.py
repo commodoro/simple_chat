@@ -9,7 +9,7 @@ import socket
 class Server(threading.Thread):
     "Se encarga de gestionar los sockets entrantes"
     
-    def __init__(self, *, host: str, port: int, maxbufsize: int = 1024):
+    def __init__(self, *, host: str, port: int):
         self.host = host
         self.port = port
         self._clients : list[socket.socket] = []
