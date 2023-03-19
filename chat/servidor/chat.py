@@ -86,7 +86,8 @@ class Chat(threading.Thread):
                         message = ChatMessage.from_json(data)
                         messages.append(message)
                     except ChatFormatError:
-                        readable.sendall(b"SysInfo - Format Error")
+                        message = ChatMessage('ServerInfo', "Format Error")
+                        messages.append(message)
                 else:
                     print("Disconnection from:", readable.getpeername())
                     self.server.clients.remove(readable)

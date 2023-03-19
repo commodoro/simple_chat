@@ -56,6 +56,3 @@ class Client(threading.Thread):
                 except queue.Empty:
                     continue
                 conn.sendall(output_data)
-
-        
-
