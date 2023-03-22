@@ -7,6 +7,7 @@ from dataclasses import dataclass
 import select
 import socket
 import threading
+import time
 from typing import Sequence
 from . import servidor
 import json
@@ -77,6 +78,9 @@ class Chat(threading.Thread):
         while not self.stop:
             messages: list[ChatMessage] = []
             r: seqsockets; w: seqsockets; a: seqsockets
+            if not self.server.clients:
+                time.sleep(0.1)
+                continue
             r, w, a = select.select(self.server.clients, self.server.clients, self.server.clients, 1)
 
             for readable in r:
